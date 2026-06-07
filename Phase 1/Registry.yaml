@@ -1,0 +1,58 @@
+# REGISTRY.yaml — data provenance for the in silico convergence study
+# Fill `local_path`, `downloaded` and `sha256` as you acquire each resource in
+# YOUR environment (this sandbox cannot reach the data hosts below).
+# Every analysis run should record which registry version it used.
+
+project: neuronal-cross-annotation-convergence
+phase: 1
+created: 2026-06-07
+
+primary_atlas:
+  replogle_2022:
+    citation: "Replogle JM et al. (2022) Cell 185:2559-2575.e28. doi:10.1016/j.cell.2022.05.013"
+    figshare_plus_doi: "10.25452/figshare.plus.20029387"   # processed AnnData (h5ad)
+    files_of_interest:
+      - "K562_essential_normalized_bulk_01.h5ad"   # recommended starting point (smaller)
+      - "rpe1_normalized_bulk_01.h5ad"             # ZIM3-KRAB CRISPRi, near-euploid
+      - "K562_gwps_normalized_bulk_01.h5ad"        # genome-wide (large)
+    raw_fastq_sra: "PRJNA831566"
+    precomputed_signatures:
+      harmonizome: "Replogle et al., Cell, 2022 K562 Genome-wide Perturb-seq Gene Perturbation Signatures"
+      czi_virtual_cells: "K562 Essential Perturb-seq"
+    local_path: null
+    downloaded: false
+    sha256: null
+
+harmonized_collection:
+  scperturb:
+    citation: "Peidli S et al. (2024) Nat Methods. scperturb.org"
+    access: ["scperturb.org", "Zenodo", "pertpy loader", "Lamin"]
+    modalities: [CRISPR-KO, CRISPRi, CRISPRa, base-editing, prime-editing, drug, scATAC, CITE-seq]
+    use: "cross-modality natural experiment (H3); scATAC for H4"
+    local_path: null
+    downloaded: false
+
+human_genetics:
+  eqtlgen:
+    citation: "Vosa U et al. (2021) Nat Genet. eqtlgen.org"
+    use: "trans-eQTL hotspots = empirical convergence nodes (H2)"
+  gtex:
+    citation: "GTEx Consortium (2020) Science. gtexportal.org"
+    use: "brain cis/trans-eQTL; allele-specific expression for pLoF natural experiment (H3)"
+  gnomad:
+    citation: "Karczewski KJ et al. (2020) Nature. gnomad.broadinstitute.org"
+    use: "pLoF variants; NMD-triggering vs NMD-escaping classification (LOFTEE + 50-55nt rule) (H3)"
+
+signatures_networks_essentiality:
+  msigdb_hallmark: { use: "UPR and other reference programs (H1)" }
+  atf4_isr_targets: { source: "ENCODE/ChEA via Enrichr/Harmonizome", use: "ISR axis (H1)" }
+  dorothea_collectri: { via: "decoupler", use: "regulon activity (H2)" }
+  progeny: { via: "decoupler", use: "pathway footprints" }
+  string: { use: "network distance for orthogonality filter and H2" }
+  depmap_achilles: { source: "depmap.org", use: "gene essentiality for H0" }
+  lincs_l1000: { source: "clue.io", use: "viability signature reference (H0)" }
+
+neuron_specific:
+  hrvatin_2018: { use: "activity-regulated-gene axis (H5)" }
+  ndd_pooled_crispr: { use: "neuronal convergence re-analysis (H4/H5)" }
+  brainspan_psychencode: { use: "developmental maturation axis (H4)" }
