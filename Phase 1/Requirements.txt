@@ -1,0 +1,21 @@
+# Phase 1 environment (verified working)
+# Core scientific stack
+numpy==2.4.4
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.8.0
+statsmodels==0.14.6
+matplotlib==3.10.8
+PyYAML==6.0.3
+
+# Single-cell data handling
+anndata==0.12.16
+h5py==3.16.0
+
+# --- For later phases (not required to run Phase 1; install when needed) ---
+# scanpy            # full single-cell toolkit (HVG, scoring, neighbors, UMAP)
+# pertpy            # perturbation analysis: E-distance / E-test, dataset loaders
+# decoupler         # signature / regulon activity scoring (ISR, NMD axes; H1/H3)
+# pySCENIC          # GRN inference (H2)
+# cellrank          # trajectory / pseudotime (H4)
+# goatools          # GO semantic similarity for the orthogonality filter
